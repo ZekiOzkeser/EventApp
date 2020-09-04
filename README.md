@@ -13,8 +13,9 @@ yapılmıştır.
 
 #### Projeyi indirdikten sonra
 
-**1-** appsetting.json dan ConnectionString'inizi ayarlayın
-**2-** sql de veri basit veri tabanını oluşturun. TodoDb
+ **1-** appsetting.json dan ConnectionString'inizi ayarlayın
+ 
+ **2-** sql de veri basit veri tabanını oluşturun. TodoDb
 
 [![xTBxyv.png](https://i.imgyukle.com/2020/09/04/xTBxyv.png)](https://imgyukle.com/i/xTBxyv)
  
