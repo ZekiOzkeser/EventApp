@@ -1,0 +1,92 @@
+﻿@model IEnumerable<EventApp.Models.ToDoList>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateAdded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateNotify)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <!--idye ve onclick dikkat edilecek-->
+            <tr onclick="Seen()">
+                <td><input id="veri" value="@Html.DisplayFor(modelItem => item.Id)" /> </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToDo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateAdded)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateNotify)
+                </td>
+                <td>
+                    <!-- Burayı front end kısmı görsel olarak düzelteceği için ellemedim.-->
+                    @if (@item.NotifyExpired() && !item.IsNotify)
+                    {
+                        <div style="background-color: red">ALARM GEÇMİŞ...</div>
+                    }
+
+                    @if (@item.NotifyRequired())
+                    {
+                        <div style="background-color: aquamarine">ALARM GELİYOR...</div>
+                    }
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!--Sayfa güncellemesi 1 dk içinde yapılıyor front end burada okunan yapılan etklinliği gizli yapıcak-->
+<script type="text/javascript">
+    setTimeout(function () {
+        alert("Sayfa yenilendi");
+        window.location.reload(1);
+    }, 60000);
+</script>
+
+<!-- Burada front end yapacağı görsele göre  post işlemine gönderme yapılacak. Şuan her tıklama için görüldü uyarısı verir!! -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function Seen() {
+        $.ajax({
+            url: '/ToDoLists/Seen',
+            type: 'POST',
+            data: {
+                Id: $('#veri').val()
+            },
+        });
+    }
+    $(document).ready(function () {
+        $("tr").click(function () {
+
+            $(this).hide("slow");
+
+
+        });
+    });
+</script>
