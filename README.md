@@ -28,7 +28,7 @@ Basit olarak ;
 >Görev üstüne tıklandığında arka taraf da görev görüldü işlemi ajax ile yapılmakta.
 >1 dk içerisinde sayfa otomatik yenilenmektedir. 
 
->Bu sistemin görselleştirilmesi basitçe yapılabilir ; 
+>Bu sistemin görselleştirilmesi basitçe şu şekilde yapılabilir ; 
 
 [![xTB5ix.png](https://i.imgyukle.com/2020/09/04/xTB5ix.png)](https://imgyukle.com/i/xTB5ix)
  
